@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.*;
 import java.net.URL;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -43,7 +45,17 @@ public class MainController implements Initializable {
     }
 
     public void switchScene(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("test-view.fxml"));
+        URL fmlPath = new File("src/main/resources/com.sciencemj.wordbook/test-view.fxml").toURL();
+        Parent root = FXMLLoader.load(fmlPath);
+        stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchPlanner(ActionEvent e) throws IOException {
+        URL fmlPath = new File("src/main/resources/com.sciencemj.wordbook/planner-view.fxml").toURL();
+        Parent root = FXMLLoader.load(fmlPath);
         stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -65,6 +77,9 @@ public class MainController implements Initializable {
             GridPane.setHalignment(TimeTable.getChildren().get(i), HPos.CENTER);
         }
         TimeTable.setGridLinesVisible(true);
+        LocalDate date = LocalDate.now();
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        int today = dayOfWeek.getValue();
     }
 
     public void writeTimeTable(){

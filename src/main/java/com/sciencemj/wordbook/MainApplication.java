@@ -5,12 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
+        URL fmlPath = new File("src/main/resources/com.sciencemj.wordbook/main-view.fxml").toURL();
+        FXMLLoader fxmlLoader = new FXMLLoader(fmlPath);
         Scene scene = new Scene(fxmlLoader.load(), 900, 800);
         stage.setTitle("Hello!");
         stage.setScene(scene);

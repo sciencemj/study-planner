@@ -110,7 +110,7 @@
                   <Button mnemonicParsing="false" onAction="#switchScene" text="CHANGE" BorderPane.alignment="CENTER" />
                </left>
                <center>
-                  <Button mnemonicParsing="false" text="PLANNER" BorderPane.alignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#switchPlanner" text="PLANNER" BorderPane.alignment="CENTER" />
                </center>
                <right>
                   <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
