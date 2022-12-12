@@ -155,27 +155,39 @@ public class PlannerController implements Initializable {
     }
 
     public void readPlan(){
-        for(LocalDate date : dates.keySet()){
-            try {
-                FileReader fr = new FileReader("Plan.txt");
-                BufferedReader br = new BufferedReader(fr);
-                String read = br.readLine();
-                while (!Objects.equals(read, date.toString())) {
-                    read = br.readLine();
-                }
-                if (read.equals(date.toString())) {
-                    while (!read.equals(date.toString() + "//")) {
+        File file = new File("Plan.txt");
+        if (file.exists()) {
+            for (LocalDate date : dates.keySet()) {
+                try {
+                    FileReader fr = new FileReader("Plan.txt");
+                    BufferedReader br = new BufferedReader(fr);
+                    String read = br.readLine();
+                    long length = 100;
+                    while (!Objects.equals(read, date.toString())) {
                         read = br.readLine();
-                        if (read.equals(date.toString() + "//"))
+                        length = length - 1;
+                        if(length < 0){
                             break;
-                        boolean check = Boolean.parseBoolean(br.readLine());
-                        addButton(dates.get(date), read, check);
+                        }
                     }
+                    if(read != null) {
+                        if (read.equals(date.toString())) {
+                            while (!read.equals(date.toString() + "//")) {
+                                read = br.readLine();
+                                if (read.equals(date.toString() + "//"))
+                                    break;
+                                boolean check = Boolean.parseBoolean(br.readLine());
+                                addButton(dates.get(date), read, check);
+                            }
+                        }
+                    }
+                    System.out.println("[ALERT] read plan");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-                System.out.println("[ALERT] read plan");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
+        }else {
+            writePlan();
         }
     }
 

@@ -28,25 +28,24 @@ public class MainController implements Initializable {
     private Scene scene;
     private Parent root;
     @FXML
-    private Label welcomeText;
+    private Label dateIndic;
 
     @FXML
     private TextField txtfield;
-    @FXML
+    /*@FXML
     private Box testBox;
     @FXML
     private GridPane TimeTable;
 
     @FXML
-    private ArrayList<Label> labels = new ArrayList<>();
+    private ArrayList<Label> labels = new ArrayList<>();*/
     @FXML
     protected void onHelloButtonClick() {
 
     }
 
     public void switchScene(ActionEvent e) throws IOException {
-        URL fmlPath = new File("src/main/resources/com.sciencemj.wordbook/test-view.fxml").toURL();
-        Parent root = FXMLLoader.load(fmlPath);
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("test-view.fxml"));
         stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -54,8 +53,7 @@ public class MainController implements Initializable {
     }
 
     public void switchPlanner(ActionEvent e) throws IOException {
-        URL fmlPath = new File("src/main/resources/com.sciencemj.wordbook/planner-view.fxml").toURL();
-        Parent root = FXMLLoader.load(fmlPath);
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("planner-view.fxml"));
         stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -64,7 +62,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for(int i = 0;i < 35;i++){
+        /*for(int i = 0;i < 35;i++){
             labels.add(new Label("TEXT" + i));
         }
         readTimeTable();
@@ -76,12 +74,11 @@ public class MainController implements Initializable {
             }
             GridPane.setHalignment(TimeTable.getChildren().get(i), HPos.CENTER);
         }
-        TimeTable.setGridLinesVisible(true);
+        TimeTable.setGridLinesVisible(true);*/
         LocalDate date = LocalDate.now();
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        int today = dayOfWeek.getValue();
+        dateIndic.setText("TODAY IS " + date.toString());
     }
-
+/*
     public void writeTimeTable(){
         try{
             FileWriter fw = new FileWriter("TimeTable.txt");
@@ -109,4 +106,5 @@ public class MainController implements Initializable {
             System.out.println(e);
         }
     }
+    */
 }
