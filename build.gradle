@@ -45,7 +45,7 @@ dependencies {
     implementation('eu.hansolo.fx:heatmap:17.0.12')
     implementation('eu.hansolo:toolboxfx:17.0.31')
     implementation('eu.hansolo:toolbox:17.0.0')
-    implementation('com.gluonhq:charm:2.0.1')
+    //implementation('com.gluonhq:charm:2.0.1')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

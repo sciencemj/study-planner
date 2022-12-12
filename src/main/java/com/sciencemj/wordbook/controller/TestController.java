@@ -50,7 +50,6 @@ public class TestController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         for(int i = 0; i < 35;i++){
             tfs.add(new TextField("TEXT"));
         }
